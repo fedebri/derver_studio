@@ -55,22 +55,7 @@ The workflow follows a practical data integration pattern:
 | `stock_gap` | Inventory quantity difference between supplier feeds |
 | `review_priority` | Rule-based triage category for operational follow-up |
 
-## Notebook: Exploratory and Client-Facing Workflow
 
-Open `merge_sku_updated.ipynb` to review the step-by-step integration process. The notebook is written in a consultant/developer presentation style, connecting each technical step to the business decision it supports.
-
-The notebook creates anonymized local demo files and can be run without access to private systems.
-
-Typical local usage:
-
-```bash
-jupyter notebook merge_sku_updated.ipynb
-```
-
-or:
-
-```bash
-jupyter lab merge_sku_updated.ipynb
 ```
 
 ## Hourly Demo Script
@@ -110,14 +95,7 @@ The script is configured through environment variables so source paths and crede
 | `SKU_API_TIMEOUT_SECONDS` | API timeout | `30` |
 | `SKU_API_RETRIES` | API retry count | `3` |
 
-Example Windows setup:
 
-```powershell
-setx SKU_SYNC_BASE_DIR "C:\sku_sync_demo"
-setx SKU_SOURCE_A_PATH "C:\data\source_a_inventory.csv"
-setx SKU_SOURCE_B_PATH "C:\data\source_b_inventory.txt"
-setx SKU_CATALOG_API_URL "https://api.example.com/catalog/products"
-setx SKU_DEMO_MODE "0"
 ```
 
 ## Runtime Outputs
@@ -169,32 +147,10 @@ chardet
 jupyter
 ```
 
-Install the core script dependencies:
-
-```bash
-pip install pandas numpy chardet
-```
-
-Install notebook tooling if needed:
-
-```bash
-pip install jupyter
-```
 
 ## Notes on Anonymization
 
 This repository is designed for public review. The included notebook and hourly demo script use anonymized source names, generic API placeholders, and synthetic product records.
+It does not publish private source files, credentials, real endpoint URLs, client-specific documentation, or raw operational exports alongside these files.
 
-Do not publish private source files, credentials, real endpoint URLs, client-specific documentation, or raw operational exports alongside these files.
 
-## Portfolio Value
-
-This project demonstrates:
-
-- Data ingestion across multiple source formats
-- Practical source-system normalization
-- Data quality gates before merge
-- Conservative ecommerce inventory reconciliation
-- API integration pattern with retries and state tracking
-- Windows Task Scheduler-oriented automation
-- Business-ready analytics outputs for operations and catalog teams
