@@ -1,0 +1,138 @@
+{
+  "name": "Tally Advanced Feedback - Executive",
+  "type": "portfolio_documentation_blueprint",
+  "version": "1.0",
+  "purpose": "Generate an automated diagnostic feedback email from a Tally survey response by combining deterministic score outputs with an OpenAI-generated qualitative reflection.",
+  "systems": [
+    "Tally",
+    "Make",
+    "OpenAI",
+    "Gmail"
+  ],
+  "trigger": {
+    "make_module": "tally:watchNewResponse",
+    "event": "New Tally response submitted",
+    "sensitive_values_removed": [
+      "webhook_id",
+      "form_id",
+      "respondent_id",
+      "submission_id"
+    ]
+  },
+  "data_inputs": {
+    "structured_answers": [
+      "selected strategic challenges",
+      "selected blockers",
+      "challenge/blocker mapping",
+      "affected organizational areas",
+      "decision-making practices",
+      "analytics and AI readiness",
+      "company profile"
+    ],
+    "text_answers": [
+      "strategic challenge notes",
+      "blocker notes",
+      "area-specific criticalities",
+      "recurring decision questions"
+    ],
+    "delivery_fields": [
+      "company name",
+      "respondent email"
+    ]
+  },
+  "derived_fields": [
+    {
+      "name": "Score_1",
+      "label": "Strategic tension",
+      "email_scale": "0-60",
+      "uses": [
+        "strategic objective intensity",
+        "blocker severity",
+        "strategic tension",
+        "functional load"
+      ]
+    },
+    {
+      "name": "Score_2",
+      "label": "Epistemic maturity",
+      "email_scale": "0-12",
+      "uses": [
+        "information access",
+        "decision-making basis",
+        "knowledge transfer"
+      ]
+    },
+    {
+      "name": "Feedback_title",
+      "label": "Deterministic feedback title"
+    },
+    {
+      "name": "Feedback_desc",
+      "label": "Deterministic feedback description"
+    }
+  ],
+  "scenario_flow": [
+    {
+      "step": 1,
+      "make_module": "tally:watchNewResponse",
+      "responsibility": "Receive the completed Tally survey response.",
+      "outputs": [
+        "raw survey fields",
+        "calculated score fields",
+        "respondent email"
+      ]
+    },
+    {
+      "step": 2,
+      "make_module": "openai-gpt-3:CreateCompletion",
+      "responsibility": "Generate the tailored qualitative feedback section.",
+      "model": "o3-mini",
+      "configuration": {
+        "temperature": 0.7,
+        "top_p": 1,
+        "response_format": "text",
+        "reasoning_effort": "medium"
+      },
+      "prompt_inputs": [
+        "company name",
+        "core strategic tension feedback",
+        "core epistemic maturity feedback",
+        "strategic challenge notes",
+        "blocker notes",
+        "area criticalities",
+        "recurring decision questions",
+        "analytics and AI strategy orientation",
+        "analytics and AI risks",
+        "company profile"
+      ],
+      "output": "Italian feedback paragraphs without greeting or closing"
+    },
+    {
+      "step": 3,
+      "make_module": "google-email:sendAnEmail",
+      "responsibility": "Assemble and send the final HTML email.",
+      "recipient": "respondent email from Tally",
+      "bcc": "internal control account",
+      "subject_template": "Derver Data Maturity Assessment - {{company_name}}",
+      "body_sections": [
+        "introductory diagnostic context",
+        "definition of the two score dimensions",
+        "Score_1 and Score_2 values",
+        "deterministic feedback title and description",
+        "OpenAI-generated qualitative reflection",
+        "closing note and AI disclosure"
+      ]
+    }
+  ],
+  "privacy": {
+    "do_not_publish_raw_exports": true,
+    "redacted_from_documentation": [
+      "respondent emails",
+      "area-owner names",
+      "area-owner emails",
+      "company-specific free text",
+      "Make connection identifiers",
+      "Tally field IDs"
+    ]
+  }
+}

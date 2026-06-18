@@ -1,0 +1,39 @@
+# Local/generated data
+data/
+reports/
+*.parquet
+*.arrow
+*.csv
+*.jsonl# Local secrets
+.env
+.env.*
+*.env
+secrets/
+credentials/
+private/
+local/
+
+# Python/runtime
+.venv/
+venv/
+__pycache__/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Local outputs
+outputs/
+artifacts/
+scratch/
+tmp/
+logs/
+*.log
+
+# macOS/editor
+.DS_Store
+.vscode/
+.idea/
+
+# Jupyter
+
+**/.ipynb_checkpoints/

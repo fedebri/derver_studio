@@ -1,0 +1,6 @@
+# Respondent-level exports and local data
+submissions.csv
+*.local.csv
+
+# OS metadata
+.DS_Store
