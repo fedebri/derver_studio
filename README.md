@@ -55,8 +55,10 @@ Representative artifacts
 * docs/survey-schema.md: questionnaire and calculated-field map.
 * make_survey.blueprint.simplified.json: simplified Make scenario blueprint for documentation and portfolio review.
 
-Repository structure
 
+## Repository structure
+
+```text
 derver_studio/
 ├── alliance_sku_analysis/
 │   ├── README.md
