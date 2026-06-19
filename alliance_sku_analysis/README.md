@@ -1,6 +1,6 @@
 # SKU Inventory Data Integration Portfolio Project
 
-This repository contains a public, anonymized version of a SKU-level data integration workflow built for ecommerce inventory reconciliation. The project demonstrates how supplier inventory feeds and catalog data can be ingested, standardized, merged, validated, and converted into business-ready analytics outputs.
+This repository contains a public, anonymized version of a SKU-level data integration workflow built for supplier feed reconciliation, ecommerce catalog alignment, and operational data quality controls. The project demonstrates how supplier inventory feeds and catalog data can be ingested, standardized, merged, validated, and converted into business-ready analytics outputs.
 
 The original engagement used private operational feeds. In this portfolio version, all source systems, credentials, paths, supplier names, and sensitive product data have been replaced with safe demo inputs while preserving the same technical patterns.
 
