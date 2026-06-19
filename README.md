@@ -9,7 +9,7 @@ This repository collects selected work developed within Derver Studio, a practic
 
 ### 1. SKU Inventory Data Integration
 
-Path: `alliance_sku_analysis/`
+Path: `sku_inventory_integration/`
 
 An anonymized SKU-level data integration workflow for supplier feed reconciliation, ecommerce catalog alignment, and operational data quality control.
 
@@ -60,7 +60,7 @@ Representative artifacts
 
 ```text
 derver_studio/
-├── alliance_sku_analysis/
+├── sku_inventory_integration/
 │   ├── README.md
 │   ├── merge_sku_updated.ipynb
 │   └── hourly_sku_data_update_demo.py
